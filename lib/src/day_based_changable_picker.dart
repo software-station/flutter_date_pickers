@@ -48,7 +48,7 @@ class DayBasedChangeablePicker<T> extends StatefulWidget {
   /// All event styles are overridden by selected styles
   /// except days with dayType is [DayType.notSelected].
   final EventDecorationBuilder eventDecorationBuilder;
-
+final MainAxisAlignment mainAxisAlignment;
   const DayBasedChangeablePicker({
     Key key,
     this.selectedDate,
@@ -60,7 +60,8 @@ class DayBasedChangeablePicker<T> extends StatefulWidget {
     @required this.selectablePicker,
     this.datePickerKeys,
     this.onSelectionError,
-    this.eventDecorationBuilder
+    this.eventDecorationBuilder,
+    this.mainAxisAlignment,
   }) : assert(datePickerLayoutSettings != null),
        assert(datePickerStyles != null),
        super(key: key);
@@ -78,6 +79,7 @@ class _DayBasedChangeablePickerState<T> extends State<DayBasedChangeablePicker<T
   DateTime _currentDisplayedMonthDate;
   DateTime _previousMonthDate;
   DateTime _nextMonthDate;
+  MainAxisAlignment mainAxisAlignment;
 
   // Styles from widget fulfilled with current Theme.
   DatePickerStyles _resultStyles;
@@ -100,6 +102,7 @@ class _DayBasedChangeablePickerState<T> extends State<DayBasedChangeablePicker<T
     super.initState();
     // Initially display the pre-selected date.
     final int monthPage = DatePickerUtils.monthDelta(widget.firstDate, widget.selectedDate);
+    mainAxisAlignment = widget.mainAxisAlignment;
     _dayPickerController = PageController(initialPage: monthPage);
 
     _changesSubscription =  widget.selectablePicker.onUpdate
@@ -173,6 +176,7 @@ class _DayBasedChangeablePickerState<T> extends State<DayBasedChangeablePicker<T
                   key: widget.datePickerKeys?.selectedPeriodKeys,
                   style: _resultStyles.displayedPeriodTitle,
                 ),
+                mainAxisAlignment: mainAxisAlignment,
               ),
             ),
           ),

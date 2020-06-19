@@ -8,7 +8,6 @@ import 'package:flutter_date_pickers/src/layout_settings.dart';
 import 'package:flutter_date_pickers/src/date_picker_keys.dart';
 import 'package:flutter_date_pickers/src/day_based_changable_picker.dart';
 
-
 // Styles for current displayed period (month) title: Theme.of(context).textTheme.subhead
 //
 // Styles for date picker cell:
@@ -33,7 +32,8 @@ class DayPicker extends StatelessWidget {
       this.datePickerStyles = const DatePickerRangeStyles(),
       this.datePickerKeys,
       this.selectableDayPredicate,
-      this.eventDecorationBuilder})
+      this.eventDecorationBuilder,
+      this.mainAxisAlignment = MainAxisAlignment.spaceAround})
       : assert(selectedDate != null),
         assert(onChanged != null),
         assert(!firstDate.isAfter(lastDate)),
@@ -73,15 +73,12 @@ class DayPicker extends StatelessWidget {
   /// All event styles are overriden by selected styles
   /// except days with dayType is [DayType.notSelected].
   final EventDecorationBuilder eventDecorationBuilder;
-
+  final MainAxisAlignment mainAxisAlignment;
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     ISelectablePicker<DateTime> daySelectablePicker = DaySelectable(
-      selectedDate,
-      firstDate,
-      lastDate,
-      selectableDayPredicate: selectableDayPredicate
-    );
+        selectedDate, firstDate, lastDate,
+        selectableDayPredicate: selectableDayPredicate);
 
     return DayBasedChangeablePicker<DateTime>(
       selectablePicker: daySelectablePicker,
@@ -93,6 +90,7 @@ class DayPicker extends StatelessWidget {
       datePickerStyles: datePickerStyles,
       datePickerKeys: datePickerKeys,
       eventDecorationBuilder: eventDecorationBuilder,
+      mainAxisAlignment: mainAxisAlignment,
     );
   }
 }

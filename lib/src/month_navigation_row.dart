@@ -8,6 +8,7 @@ class MonthNavigationRow extends StatelessWidget {
   final VoidCallback onPreviousMonthTapped;
   final String nextMonthTooltip;
   final String previousMonthTooltip;
+  final MainAxisAlignment mainAxisAlignment;
 
   /// Usually [Text] widget.
   final Widget title;
@@ -20,13 +21,14 @@ class MonthNavigationRow extends StatelessWidget {
     this.onPreviousMonthTapped,
     this.nextMonthTooltip,
     this.previousMonthTooltip,
-    this.title
+    this.title,
+    this.mainAxisAlignment,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Semantics(
