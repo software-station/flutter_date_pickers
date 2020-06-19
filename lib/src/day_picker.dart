@@ -33,7 +33,7 @@ class DayPicker extends StatelessWidget {
       this.datePickerKeys,
       this.selectableDayPredicate,
       this.eventDecorationBuilder,
-      this.mainAxisAlignment = MainAxisAlignment.spaceAround})
+      this.mainAxisAlignment = MainAxisAlignment.start})
       : assert(selectedDate != null),
         assert(onChanged != null),
         assert(!firstDate.isAfter(lastDate)),
@@ -79,7 +79,6 @@ class DayPicker extends StatelessWidget {
     ISelectablePicker<DateTime> daySelectablePicker = DaySelectable(
         selectedDate, firstDate, lastDate,
         selectableDayPredicate: selectableDayPredicate);
-
     return DayBasedChangeablePicker<DateTime>(
       selectablePicker: daySelectablePicker,
       selectedDate: selectedDate,
